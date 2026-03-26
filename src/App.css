@@ -1,0 +1,65 @@
+.mare-app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.mare-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mare-content {
+  padding: 40px;
+}
+
+.section-title {
+  margin-bottom: 25px;
+  border-left: 4px solid #5f86a1;
+  padding-left: 15px;
+  color: #1F2E35;
+}
+
+.mare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #f2f2f2;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 6px 16px rgba(31, 46, 53, 0.1);
+  transition: all 0.25s ease;
+  border: 1px solid #afc8d6;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(31, 46, 53, 0.15);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 1.1rem;
+  color: #1F2E35;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #5F7D8C;
+}
+
+.preco {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #254b69;
+  font-size: 1rem;
+}

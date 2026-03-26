@@ -1,0 +1,60 @@
+.mare-header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background-color: #1F2E35;
+  border-bottom: 2px solid #5f86a1;
+  color: #e7ebee;
+}
+
+.user-info h3 {
+  font-size: 1.1rem;
+  color: #e7ebee;
+}
+
+.user-info p {
+  font-size: 0.9rem;
+  color: #e7ebee;
+}
+
+.destaque {
+  color: #afc8d6;
+  font-weight: bold;
+}
+
+.badge {
+  background-color: #e7ebee;
+  color: #254b69;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #e7ebee;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.notificacoes {
+  background: transparent;
+  border: none;
+  color: #e7ebee;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.notificacoes:hover {
+  color: #afc8d6;
+  transform: scale(1.1);
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+}
