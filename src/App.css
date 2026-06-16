@@ -1,16 +1,14 @@
-.mare-app {
-  display: flex;
-  min-height: 100vh;
-}
-
 .mare-main {
   display: flex;
   flex-direction: column;
   width: 100%;
+  background-color: #f9f9f9; 
 }
 
 .mare-content {
   padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .section-title {
@@ -18,48 +16,157 @@
   border-left: 4px solid #5f86a1;
   padding-left: 15px;
   color: #1F2E35;
+  font-size: 1.8rem;
 }
 
 .mare-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 }
 
+
 .card {
-  background-color: #f2f2f2;
-  border-radius: 16px;
-  padding: 15px;
-  box-shadow: 0 6px 16px rgba(31, 46, 53, 0.1);
-  transition: all 0.25s ease;
-  border: 1px solid #afc8d6;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(31, 46, 53, 0.15);
+  transform: translateY(-5px); 
 }
 
 .card img {
   width: 100%;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .card h2 {
-  font-size: 1.1rem;
-  color: #1F2E35;
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
 }
 
 .card p {
   font-size: 0.9rem;
-  color: #5F7D8C;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 8px;
 }
 
-.preco {
+.card .preco {
   display: block;
-  margin-top: 10px;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #254b69;
-  font-size: 1rem;
+  color: #5f86a1;
+  margin-bottom: 10px;
+}
+
+.card-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-add{
+  padding: 4px;
+  border-radius: 7px;
+  border: 0px;
+  background-color: #afc8d6;
+  height: 30px;
+  cursor: pointer !important;
+  position: relative; /* Garante que ele fique na frente */
+  z-index: 5;         /* Coloca o botão acima de qualquer outro efeito do card */
+}
+
+.btn-add:hover{
+  background-color: #254b69;
+  color: #e7ebee; 
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.carrinho-controles {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.quantidade-selector {
+  display: flex;
+  align-items: center;
+  background: #1e293b;
+  border-radius: 6px;
+  padding: 4px;
+  gap: 15px;
+}
+
+.quantidade-selector button {
+  background: #334155;
+  color: #ffffff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quantidade-selector button:hover {
+  background: #475569;
+}
+
+.quantidade-selector span {
+  color: #ffffff;
+  font-weight: bold;
+  min-width: 25px;
+  text-align: center;
+}
+
+.toast-alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.95rem;
+  z-index: 2000; /* Fica acima de tudo, inclusive do modal */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: toastIn 0.3s ease-out;
+}
+
+/* Cor verde para quando adiciona */
+.toast-alerta.sucesso {
+  background: #10b981; 
+  border: 1px solid #059669;
+}
+
+/* Cor vermelha/laranja para quando remove */
+.toast-alerta.removido {
+  background: #f43f5e;
+  border: 1px solid #e11d48;
+}
+
+@keyframes toastIn {
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
 }
