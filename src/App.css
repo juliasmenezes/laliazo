@@ -82,8 +82,8 @@
   background-color: #afc8d6;
   height: 30px;
   cursor: pointer !important;
-  position: relative; /* Garante que ele fique na frente */
-  z-index: 5;         /* Coloca o botão acima de qualquer outro efeito do card */
+  position: relative; 
+  z-index: 5;         
 }
 
 .btn-add:hover{
@@ -143,18 +143,16 @@
   color: #ffffff;
   font-weight: bold;
   font-size: 0.95rem;
-  z-index: 2000; /* Fica acima de tudo, inclusive do modal */
+  z-index: 2000; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   animation: toastIn 0.3s ease-out;
 }
 
-/* Cor verde para quando adiciona */
 .toast-alerta.sucesso {
   background: #10b981; 
   border: 1px solid #059669;
 }
 
-/* Cor vermelha/laranja para quando remove */
 .toast-alerta.removido {
   background: #f43f5e;
   border: 1px solid #e11d48;
@@ -168,5 +166,113 @@
   to {
     top: 20px;
     opacity: 1;
+  }
+}
+
+.carrinho-layout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.checkout-simulador {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 25px;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.checkout-simulador h3 {
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 10px;
+}
+
+.checkout-linhas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkout-linha {
+  display: flex;
+  justify-content: space-between;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.entrega-gratis {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.checkout-divisor {
+  border: 0;
+  border-top: 1px solid #1e293b;
+  margin: 8px 0;
+}
+
+.checkout-linha.total {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.btn-finalizar-compra {
+  width: 100%;
+  padding: 15px;
+  background: #10b981; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: 0.2s;
+}
+
+.btn-finalizar-compra:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+.carrinho-vazio {
+  text-align: center;
+  padding: 50px 20px;
+  color: #94a3b8;
+}
+
+.btn-voltar {
+  background: #254b69;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (min-width: 900px) {
+  .carrinho-layout-container {
+    flex-direction: row;
+  }
+
+  .carrinho-layout-container .mare-grid {
+    flex: 1; 
+  }
+
+  .checkout-simulador {
+    width: 350px; 
+    position: sticky;
+    top: 20px; 
   }
 }

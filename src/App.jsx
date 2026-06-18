@@ -108,57 +108,103 @@ function App() {
         {/* CONTEÚDO */}
         <div className="mare-content">
           <h2 className="section-title">
-            {activeTab === "dash"
-              ? "Doces Disponíveis"
-              : "Meu Carrinho"}
+            {activeTab === "dash" ? "Doces Disponíveis" : "Meu Carrinho"}
           </h2>
 
-          <div className="mare-grid">
-            {filteredProdutos.map((p, index) => (
-              <div className="card" key={p.id || index}>
-                <img
-                  src={p.imagem}
-                  alt={p.nome}
-                  className="card-img"
-                  onClick={() => setSelectedProduto(p)}
-                  style={{ cursor: "pointer" }}
-                />
+          {/* Se o carrinho estiver vazio na aba de carrinho, mostra um aviso */}
+          {activeTab !== "dash" && carrinho.length === 0 ? (
+            <div className="carrinho-vazio">
+              <p>Sua sacola está vazia. Que tal adicionar alguns doces?</p>
+              <button className="btn-voltar" onClick={() => setActiveTab("dash")}>
+                Ver Doces Disponíveis
+              </button>
+            </div>
+          ) : (
+            <div className="carrinho-layout-container">
 
-                <div className="card-info">
-                  <h2 onClick={() => setSelectedProduto(p)} style={{ cursor: "pointer" }}>
-                    {p.nome}
-                  </h2>
+              {/* Grid de Produtos */}
+              <div className="mare-grid">
+                {filteredProdutos.map((p, index) => (
+                  <div className="card" key={p.id || index}>
+                    <img
+                      src={p.imagem}
+                      alt={p.nome}
+                      className="card-img"
+                      onClick={() => setSelectedProduto(p)}
+                      style={{ cursor: "pointer" }}
+                    />
 
-                  <span className="preco">
-                    R$ {p.preco.toFixed(2)}
-                  </span>
+                    <div className="card-info">
+                      <h2 onClick={() => setSelectedProduto(p)} style={{ cursor: "pointer" }}>
+                        {p.nome}
+                      </h2>
 
-                  
-                  {activeTab === "dash" && (
-                    <button
-                      className="btn-add"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProduto(p);
-                      }}
-                    >
-                      Saiba mais
-                    </button>
-                  )}
+                      <span className="preco">
+                        R$ {p.preco.toFixed(2)}
+                      </span>
 
-                  {activeTab !== "dash" && (
-                    <div className="carrinho-controles">
-                      <div className="quantidade-selector">
-                        <button onClick={() => removerDoCarrinho(p.id)}>-</button>
-                        <span>{p.quantidade}x</span>
-                        <button onClick={() => adicionarAoCarrinho(p)}>+</button>
-                      </div>
+                      {activeTab === "dash" && (
+                        <button
+                          className="btn-add"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProduto(p);
+                          }}
+                        >
+                          Saiba mais
+                        </button>
+                      )}
+
+                      {activeTab !== "dash" && (
+                        <div className="carrinho-controles">
+                          <div className="quantidade-selector">
+                            <button onClick={() => removerDoCarrinho(p.id)}>-</button>
+                            <span>{p.quantidade}x</span>
+                            <button onClick={() => adicionarAoCarrinho(p)}>+</button>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+
+              {/* PAINEL DE SIMULAÇÃO DE COMPRA */}
+              {activeTab !== "dash" && carrinho.length > 0 && (
+                <div className="checkout-simulador">
+                  <h3>Resumo da Compra</h3>
+
+                  <div className="checkout-linhas">
+                    <div className="checkout-linha">
+                      <span>Subtotal ({carrinho.reduce((acc, item) => acc + item.quantidade, 0)} itens)</span>
+                      <span>R$ {carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0).toFixed(2)}</span>
+                    </div>
+                    <div className="checkout-linha">
+                      <span>Entrega</span>
+                      <span className="entrega-gratis">GRÁTIS</span>
+                    </div>
+                    <hr className="checkout-divisor" />
+                    <div className="checkout-linha total">
+                      <span>Total Estimado</span>
+                      <span>R$ {carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0).toFixed(2)}</span>
+                    </div>
+                  </div>
+
+                  <button
+                    className="btn-finalizar-compra"
+                    onClick={() => {
+                      mostrarAlerta("Pedido recebido com sucesso! Preparando seus doces...", "sucesso");
+                      setCarrinho([]); 
+                      setActiveTab("dash"); 
+                    }}
+                  >
+                    FINALIZAR PEDIDO
+                  </button>
+                </div>
+              )}
+
+            </div>
+          )}
         </div>
       </main>
 
